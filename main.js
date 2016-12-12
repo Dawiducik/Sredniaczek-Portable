@@ -29,9 +29,21 @@ uploadButton.addEventListener('click', function () {
   }
 }, false);
 fileInput.addEventListener('change', function() {
-  document.querySelector('label').setAttribute('style', 'background-color: green');
-  document.querySelector('label').innerHTML = fileInput.files[0].name;
-  document.querySelector('input#save').classList.remove('hidden');
+  var label = document.querySelector('label'),
+      value = fileInput.value,
+      ext = value.slice(value.length - 5, value.length);
+  if(ext === '.html') {
+    label.setAttribute('style', 'background-color: green');
+    label.innerHTML = fileInput.files[0].name;
+    document.querySelector('input#save').classList.remove('hidden');
+  }
+  else {
+    label.setAttribute('style', 'background-color: #d3394c');
+    label.innerHTML = 'Złe rozszerzenie!';
+    document.querySelector('input#save').classList.add('hidden');
+  }
+  
+  
 
 }, false);
 
