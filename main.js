@@ -28,4 +28,10 @@ uploadButton.addEventListener('click', function () {
     alert('Załaduj plik przed klikaniem')
   }
 }, false);
+fileInput.addEventListener('change', function() {
+  document.querySelector('label').setAttribute('style', 'background-color: green');
+  document.querySelector('label').innerHTML = fileInput.files[0].name;
+  document.querySelector('input#save').classList.remove('hidden');
+
+}, false);
 
