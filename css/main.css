@@ -1,9 +1,4 @@
-html {
-  background: none !important;
-}
-body {
-  margin: 0 auto !important;
-}
+
 .flexContainer {
   margin: 0 auto;
   display: flex;

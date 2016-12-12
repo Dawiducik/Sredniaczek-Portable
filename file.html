@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Średnia</title>
+  <link rel="stylesheet" href="https://uonetplus-opiekun.vulcan.net.pl/powiatmielecki/001796/Content/Vulcan/index.css">
+  <link rel="stylesheet" href="https://uonetplus-opiekun.vulcan.net.pl/powiatmielecki/001796/Content/Common/Common.css">
+  <link rel="stylesheet" href="https://uonetplus-opiekun.vulcan.net.pl/powiatmielecki/001796/Content/Oceny/Site.css">
+  <style>
+    html {
+      background: none;
+    }
+    body {
+      margin: 0 auto !important;
+    }
+  </style>
+</head>
+<body>
+  <script>
+  var table = localStorage.getItem('table'), //pobiera wyciętą tabele z local storage
+      tableContainer = document.createElement("div.container"); //tworzy nowy div z klasa container
+  tableContainer.innerHTML = table; //przypisuje wewnętrzny html czyli wyciętą tabele do containera
+  document.querySelector('body').appendChild(tableContainer); //wrzuca do body kontener tabeli
+  </script>
+  <script src="sredniaczek.js"></script> <!--inicjalizacja średniaczka-->
+</body>
+</html>
