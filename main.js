@@ -1,6 +1,7 @@
 'use strict';
 var fileInput = document.querySelector('#myfileinput'),
-    uploadButton = document.querySelector('#save');
+    uploadButton = document.querySelector('#save'),
+    label = document.querySelector('label');
 uploadButton.addEventListener('click', function () {
   if (!window.FileReader) {
     alert('Nie kompatybilna przeglądarka!');
@@ -14,13 +15,22 @@ uploadButton.addEventListener('click', function () {
     reader.readAsText(textFile); // "konwertowanie" do textu
     reader.onload = function (event) {
       var file = event.target.result,
-          tableStart, tableEnd, table;
+          tableStart, tableEnd, table, span;
       if (file && file.length) {
-        tableStart = file.indexOf('<table class="ocenyZwykle-table">'); //szuka gdzie zaczyna sie tabela
-        tableEnd = file.indexOf("</main>"); //ten element jest tuz po zakonczeiu tabeli
-        table = file.slice(tableStart, tableEnd); //wycina kod między rozpoczeciem i zakonczeniem
-        localStorage.setItem('table', table); //zapisanie wyciętej tabeli 
-        location = "file.html"; // redirect do kolejnego pliku
+        span = file.indexOf('class="ocenaCzastkowa masterTooltip"');
+        console.log(span);
+        if(span === -1) {
+          label.innerHTML = "Nie znaleziono ocen!";
+          label.setAttribute('style', 'background-color: #d3394c');
+          document.querySelector('input#save').classList.add('hidden');
+        }
+        else {
+          tableStart = file.indexOf('<table class="ocenyZwykle-table">'); //szuka gdzie zaczyna sie tabela
+          tableEnd = file.indexOf("</main>"); //ten element jest tuz po zakonczeiu tabeli
+          table = file.slice(tableStart, tableEnd); //wycina kod między rozpoczeciem i zakonczeniem
+          localStorage.setItem('table', table); //zapisanie wyciętej tabeli 
+          location = "file.html"; // redirect do kolejnego pliku
+        }
       }
     }
   }
@@ -29,8 +39,7 @@ uploadButton.addEventListener('click', function () {
   }
 }, false);
 fileInput.addEventListener('change', function() {
-  var label = document.querySelector('label'),
-      value = fileInput.value,
+  var value = fileInput.value,
       ext = value.slice(value.length - 5, value.length);
   if(ext === '.html') {
     label.setAttribute('style', 'background-color: green');
