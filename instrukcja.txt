@@ -1,0 +1,4 @@
+1. Wchodzisz na dziennik na strone z ocenami
+2. Klikasz Ctrl + S i zapisujesz jako .html
+3. Klikasz wybierz plik i wybierasz œci¹gniêt¹ strone
+4. Klikasz oblicz œredni¹
